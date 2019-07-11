@@ -38,6 +38,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Card.o \
 	${OBJECTDIR}/Game.o \
 	${OBJECTDIR}/HumanPlayer.o \
+	${OBJECTDIR}/TurnManager.o \
 	${OBJECTDIR}/main.o
 
 
@@ -79,6 +80,11 @@ ${OBJECTDIR}/HumanPlayer.o: HumanPlayer.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/HumanPlayer.o HumanPlayer.cpp
+
+${OBJECTDIR}/TurnManager.o: TurnManager.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TurnManager.o TurnManager.cpp
 
 ${OBJECTDIR}/main.o: main.cpp
 	${MKDIR} -p ${OBJECTDIR}
