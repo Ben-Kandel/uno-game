@@ -22,6 +22,22 @@ using std::cout; using std::endl;
  * 
  */
 int main(int argc, char** argv) {
+    /*
+     TODO: the next major thing is maybe creating a Pile class. it's just the easiest way
+     * to have an open pile and still have it work, as well as remembering the color chosen for wild cards.
+     * after that, we should work on representing wild cards and action cards correctly in the output.
+     * also, we still need to add those wild cards to the deck. so maybe do the other things first.
+     * 
+     * priorities:
+     * 1. pile class
+     * 2. drawing cards when you don't have any available.
+     * 3. cleaner output for the human players
+     * 3. two human players successfully playing a game with regular cards
+     * 4. wild cards.
+     * 5. ai players.
+     * 6. testing the whole thing.
+     
+     */
     cout << "testing" << endl;
     
     Game g(2);
