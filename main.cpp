@@ -22,14 +22,6 @@ using std::cout; using std::endl;
  * 
  */
 int main(int argc, char** argv) {
-    /*
-     todo: create the cycle thingy so we can know 
-     who's turn it is. also make the logic class
-     idk if ill have a discard pile and then 
-     merge it back into the deck or just have a single card
-     represent the discard pile because that is all we need
-     
-     */
     cout << "testing" << endl;
     
     Game g(2);

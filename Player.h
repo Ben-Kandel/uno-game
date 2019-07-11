@@ -17,7 +17,7 @@
 #include <vector>
 using std::vector;
 #include <iostream>
-using std::cout; using std::endl;
+using std::cout; using std::endl; using std::cin;
 #include "Card.h"
 
 
@@ -49,13 +49,15 @@ public:
     }
     virtual void PrintHand(){
         cout << endl;
-        cout << "Player " << pnumber << "'s hand:" << endl;
+        cout << "Player " << pnumber+1 << "'s hand:" << endl;
+        int counter = 1;
         for(Card* c : hand){
-            cout << "Color: " << c->GetColor() << " Number: " << c->GetNumber() << endl;
+            cout << counter << ":" << "Color: " << c->GetColor() << " Number: " << c->GetNumber() << endl;
+            counter++;
         }
         cout << endl;
     }
-private:
+protected:
     int pnumber;
     int handsize = 7;
     vector<Card*> hand;

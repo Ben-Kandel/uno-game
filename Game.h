@@ -18,10 +18,13 @@
 using std::vector;
 #include <iostream>
 using std::cout; using std::endl;
+#include <algorithm>
+using std::random_shuffle;
 
 #include "Card.h"
 #include "Player.h"
 #include "HumanPlayer.h"
+#include "TurnManager.h"
 
 class Game {
 public:
@@ -37,6 +40,9 @@ private:
     int nplayers;
     vector<Card*> deck;
     vector<Player*> players;
+    TurnManager* tm;
+    bool gameover;
+    Card* topcard;
 };
 
 #endif /* GAME_H */

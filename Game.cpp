@@ -17,6 +17,8 @@ Game::Game(int p){
     nplayers = p;
     CreateCards(deck);
     CreatePlayers();
+    tm = new TurnManager(p);
+    gameover = false;
 }
 
 Game::~Game(){
@@ -26,7 +28,9 @@ Game::~Game(){
 }
 
 void Game::CreateCards(vector<Card*> &d){
-    //okay. so..the cards. the colors are 'r', 'g', 'b', 'y', 'w'
+    //okay. so..the cards. the colors are 'r', 'g', 'b', 'y', 'w' w is wild by the way
+    //we're representing the action cards like skip, reverse, and draw 2 with just 10, 11, and 12 respectively, but the players
+    //will see them in their normal form
     for(int i = 0; i <= 12; i++){
         Card* a = new Card('r', i);
         Card* b = new Card('g', i);
@@ -47,11 +51,12 @@ void Game::CreateCards(vector<Card*> &d){
         d.push_back(c);
         d.push_back(dd);
     }
+    random_shuffle(d.begin(), d.end()); //randomly shuffle the deck.
 }
 
 void Game::CreatePlayers(){
     for(int i = 0; i<nplayers; i++){
-        Player* p = new HumanPlayer(i);
+        Player* p = new HumanPlayer(i); //right now we are just making all of them human players.
         players.push_back(p);
     }
 }
@@ -83,6 +88,15 @@ void Game::StartGame(){
     for(int i = 0; i<nplayers; i++){
         DealCards(i, 7);
     }
+    while(!gameover){
+        Player* x = players[tm->GetPlayerTurn()];
+        x->Play();
+        tm->NextTurn(); //we should be giving this to the logic manager so they can determine which way the turn goes.
+    }
+    cout << "<<<<<< Game over? >>>>>>" << endl;
+    //now we just loop through our players endlessly, call their play function, until someone wins.
+    //let's start off with two human players.
+    
 }
 
 void Game::PrintPlayerHands(){

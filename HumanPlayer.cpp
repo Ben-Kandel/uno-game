@@ -18,5 +18,16 @@ HumanPlayer::HumanPlayer(int n):Player(n){
 }
 
 void HumanPlayer::Play(){
-    
+    size_t index;
+    PrintHand();
+    while(true){
+        cout << "Please choose a card to play by typing in the corresponding number: ";
+        cin >> index;
+        if(index < 1 || index > hand.size()){
+            cout << "ERROR: Please enter a valid number." << endl;
+            continue;
+        }
+        break;
+    }
+    //if we get here, that means we picked a valid number. now we need our turn logic. also we need access to the pile so we can compare.
 }
