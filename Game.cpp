@@ -19,6 +19,8 @@ Game::Game(int p){
     CreatePlayers();
     tm = new TurnManager(p);
     gameover = false;
+    pl = new Pile();
+    DealCards(-1, 1); //giving the pile one card.
 }
 
 Game::~Game(){
@@ -31,6 +33,7 @@ void Game::CreateCards(vector<Card*> &d){
     //okay. so..the cards. the colors are 'r', 'g', 'b', 'y', 'w' w is wild by the way
     //we're representing the action cards like skip, reverse, and draw 2 with just 10, 11, and 12 respectively, but the players
     //will see them in their normal form
+    //10 = skip, 11 = reverse, 12 = draw 2
     for(int i = 0; i <= 12; i++){
         Card* a = new Card('r', i);
         Card* b = new Card('g', i);
@@ -62,6 +65,16 @@ void Game::CreatePlayers(){
 }
 
 void Game::DealCards(int p, int cards){
+    if(p == -1){ //we already have a function to deal cards, might as well  make it so
+        //it can deal to the pile too.
+        for(int i = 0; i<cards; i++){
+            Card* c = deck.back();
+            pl->TakeCard(c);
+            deck.pop_back();
+        }
+        return;
+    }
+    
     //we are given the player number, and how many cards we want to give to them.
     Player* x = players[p];
     //we should check they are the same number.
@@ -90,7 +103,10 @@ void Game::StartGame(){
     }
     while(!gameover){
         Player* x = players[tm->GetPlayerTurn()];
-        x->Play();
+        cout << "The card on the top of the pile is a " << pl->GetTop()->GetColor() << ":" << pl->GetTop()->GetNumber() << endl;
+        x->Play(pl);
+        //we should make play return something. but also...idk.
+        //how do we want this to go?
         tm->NextTurn(); //we should be giving this to the logic manager so they can determine which way the turn goes.
     }
     cout << "<<<<<< Game over? >>>>>>" << endl;

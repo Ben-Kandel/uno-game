@@ -30,6 +30,10 @@ int main(int argc, char** argv) {
      * 
      * priorities:
      * 1. pile class
+     * 
+     * we need to restructure some things here. there are too many events going on that have to be passed between multiple classes.
+     * I need to sit down and think of a better solution.
+     * 
      * 2. drawing cards when you don't have any available.
      * 3. cleaner output for the human players
      * 3. two human players successfully playing a game with regular cards
@@ -41,12 +45,12 @@ int main(int argc, char** argv) {
     cout << "testing" << endl;
     
     Game g(2);
-    g.PrintDeck();
+    //g.PrintDeck();
     
     g.StartGame();
-    g.PrintPlayerHands();
+    //g.PrintPlayerHands();
     
-    g.PrintDeck();
+    //g.PrintDeck();
     
     return 0;
 }

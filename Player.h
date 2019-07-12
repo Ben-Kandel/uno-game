@@ -19,14 +19,16 @@ using std::vector;
 #include <iostream>
 using std::cout; using std::endl; using std::cin;
 #include "Card.h"
-
+#include "CardLogic.h"
+#include "Pile.h"
 
 class Player {
 public:
     Player(int n){
         pnumber = n;
+        cl = new CardLogic();
     }
-    virtual void Play() = 0;
+    virtual int Play(Pile* pl) = 0;
     virtual void TakeCard(Card* c){
         if(!IsHandFull()){
             hand.push_back(c);   
@@ -67,6 +69,7 @@ protected:
         }
         return false;
     }
+    CardLogic* cl;
 };
 
 #endif /* PLAYER_H */

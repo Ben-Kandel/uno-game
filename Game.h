@@ -25,6 +25,7 @@ using std::random_shuffle;
 #include "Player.h"
 #include "HumanPlayer.h"
 #include "TurnManager.h"
+#include "Pile.h"
 
 class Game {
 public:
@@ -41,8 +42,8 @@ private:
     vector<Card*> deck;
     vector<Player*> players;
     TurnManager* tm;
+    Pile* pl;
     bool gameover;
-    Card* topcard;
 };
 
 #endif /* GAME_H */

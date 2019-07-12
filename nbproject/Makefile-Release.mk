@@ -39,6 +39,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/CardLogic.o \
 	${OBJECTDIR}/Game.o \
 	${OBJECTDIR}/HumanPlayer.o \
+	${OBJECTDIR}/Pile.o \
 	${OBJECTDIR}/TurnManager.o \
 	${OBJECTDIR}/main.o
 
@@ -86,6 +87,11 @@ ${OBJECTDIR}/HumanPlayer.o: HumanPlayer.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/HumanPlayer.o HumanPlayer.cpp
+
+${OBJECTDIR}/Pile.o: Pile.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Pile.o Pile.cpp
 
 ${OBJECTDIR}/TurnManager.o: TurnManager.cpp
 	${MKDIR} -p ${OBJECTDIR}
