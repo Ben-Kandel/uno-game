@@ -22,13 +22,15 @@ using std::cout; using std::endl; using std::cin;
 #include "CardLogic.h"
 #include "Pile.h"
 
+class Deck; //forward declaration for the deck class.
+
 class Player {
 public:
     Player(int n){
         pnumber = n;
         cl = new CardLogic();
     }
-    virtual int Play(Pile* pl) = 0;
+    virtual int Play(Pile* pl, Deck* d) = 0;
     virtual void TakeCard(Card* c){
         if(!IsHandFull()){
             hand.push_back(c);   

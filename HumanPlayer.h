@@ -19,7 +19,7 @@
 class HumanPlayer : public Player{
 public:
     HumanPlayer(int n);
-    virtual int Play(Pile* pl); //here is where we ask for user input.
+    virtual int Play(Pile* pl, Deck* d); //here is where we ask for user input.
     //the AI player's implementation is just the algorithm playing the first available card
 private:
     //nothing

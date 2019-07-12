@@ -45,3 +45,7 @@ void TurnManager::SkipTurn(){
     NextTurn();
     NextTurn();
 }
+
+void TurnManager::Reverse(){
+    dir = !dir; //flip the direction.
+}

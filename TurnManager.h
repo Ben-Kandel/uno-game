@@ -20,6 +20,7 @@ public:
     void NextTurn();
     void SkipTurn();
     int GetPlayerTurn();
+    void Reverse();
 private:
     bool dir; //true will mean going forward in the loop. false will mean going backward.
     int currentturn; //0 technically means player 1...maybe i'll fix it later.

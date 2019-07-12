@@ -37,6 +37,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/Card.o \
 	${OBJECTDIR}/CardLogic.o \
+	${OBJECTDIR}/Deck.o \
 	${OBJECTDIR}/Game.o \
 	${OBJECTDIR}/HumanPlayer.o \
 	${OBJECTDIR}/Pile.o \
@@ -77,6 +78,11 @@ ${OBJECTDIR}/CardLogic.o: CardLogic.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/CardLogic.o CardLogic.cpp
+
+${OBJECTDIR}/Deck.o: Deck.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Deck.o Deck.cpp
 
 ${OBJECTDIR}/Game.o: Game.cpp
 	${MKDIR} -p ${OBJECTDIR}

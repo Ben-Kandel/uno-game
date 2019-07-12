@@ -26,24 +26,23 @@ using std::random_shuffle;
 #include "HumanPlayer.h"
 #include "TurnManager.h"
 #include "Pile.h"
+#include "Deck.h"
 
 class Game {
 public:
     Game(int p);
-    ~Game();
-    void PrintDeck();
+    //~Game();
     void StartGame();
     void PrintPlayerHands();
 private:
-    void CreateCards(vector<Card*> &d);
     void CreatePlayers();
     void DealCards(int p, int cards);
     int nplayers;
-    vector<Card*> deck;
     vector<Player*> players;
     TurnManager* tm;
     Pile* pl;
     bool gameover;
+    Deck* deck;
 };
 
 #endif /* GAME_H */
