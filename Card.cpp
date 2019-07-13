@@ -38,18 +38,23 @@ std::ostream& operator<<(std::ostream& os, Card& c){
     if(c.GetColor() == 'r'){
         SetConsoleTextAttribute(hconsole, 12);
         os << "red ";
+        //SetConsoleTextAttribute(hconsole, 15);
     }else if(c.GetColor() == 'g'){
         SetConsoleTextAttribute(hconsole, 10);
         os << "green ";
+        //SetConsoleTextAttribute(hconsole, 15);
     }else if(c.GetColor() == 'b'){
         SetConsoleTextAttribute(hconsole, 9);
         os << "blue ";
+        //SetConsoleTextAttribute(hconsole, 15);
     }else if(c.GetColor() == 'y'){
         SetConsoleTextAttribute(hconsole, 14);
         os << "yellow ";
+        //SetConsoleTextAttribute(hconsole, 15);
     }else if(c.GetColor() == 'w'){
         SetConsoleTextAttribute(hconsole, 15);
         os << "wild ";
+        //SetConsoleTextAttribute(hconsole, 15);
     }
     
     if(c.GetNumber() == 10){
@@ -61,6 +66,7 @@ std::ostream& operator<<(std::ostream& os, Card& c){
     }else{
         os << c.GetNumber();
     }
+    SetConsoleTextAttribute(hconsole, 15);
     return os;
 }
 

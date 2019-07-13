@@ -36,6 +36,11 @@ void Game::StartGame(){
     deck->StartGame(players, pl);
     int winner;
     while(!gameover){
+        if(deck->GetSize() <= 0 ){
+            cout << "this is the pile card before: " << pl->GetTop() << endl;
+            pl->RestartPile(deck->GetDeck());
+            cout << "pile shuffled back into deck. this is the pile card now: " << pl->GetTop() << endl;
+        }
         Player* x = players[tm->GetPlayerTurn()];
         if(drawtwo){
             x->TakeCard(deck->DealMeCard());

@@ -50,7 +50,7 @@ int main(int argc, char** argv) {
     //14 for yellow
     //15 for white
     
-    Game g(2);
+    Game g(3);
     //g.PrintDeck();
     
     g.StartGame();

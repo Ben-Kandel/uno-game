@@ -19,6 +19,23 @@ Card* Pile::GetTop(){
 
 void Pile::RestartPile(vector<Card*>& deck){
     //take all of the stack except the top and shuffle it back into this deck we got passed
+    Card* save = pile.top();
+    pile.pop();
+    
+    vector<Card*> bottomofpile;
+    
+    for(int i = 0; i<pile.size(); i++){
+        bottomofpile.push_back(pile.top());
+        pile.pop();
+    }
+    //now the pile should be empty
+    pile.push(save);
+    
+    //merge the bottomofpile with the deck
+    deck.insert(deck.end(), bottomofpile.begin(), bottomofpile.end());
+    //randomly shuffle it again
+    int seed = std::chrono::system_clock::now().time_since_epoch().count();
+    shuffle(deck.begin(), deck.end(), std::default_random_engine(seed));
 }
 
 void Pile::SetWildChoice(char c){

@@ -18,6 +18,10 @@
 using std::stack;
 #include <vector>
 using std::vector;
+#include <algorithm>
+using std::shuffle;
+#include <random>
+#include <chrono>
 
 #include "Card.h"
 

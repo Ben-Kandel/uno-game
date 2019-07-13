@@ -32,6 +32,7 @@ public:
     void StartGame(vector<Player*> players, Pile* pl);
     int GetSize();
     ~Deck();
+    vector<Card*>& GetDeck();
 private:
     void CreateCards();
     vector<Card*> deck;
