@@ -35,6 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/AIPlayer.o \
 	${OBJECTDIR}/Card.o \
 	${OBJECTDIR}/CardLogic.o \
 	${OBJECTDIR}/Deck.o \
@@ -68,6 +69,11 @@ LDLIBSOPTIONS=
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/unogame.exe: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/unogame ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/AIPlayer.o: AIPlayer.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/AIPlayer.o AIPlayer.cpp
 
 ${OBJECTDIR}/Card.o: Card.cpp
 	${MKDIR} -p ${OBJECTDIR}

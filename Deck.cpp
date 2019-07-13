@@ -55,12 +55,19 @@ void Deck::CreateCards(){
         deck.push_back(c);
         deck.push_back(d);
     }
+    //create the wild cards
+    for(int i = 0; i < 2; i++){
+        for(int j = 0; j<4; j++){
+            Card* a = new Card('w', i);
+            deck.push_back(a);
+        }
+    }
     int seed = std::chrono::system_clock::now().time_since_epoch().count();
     shuffle(deck.begin(), deck.end(), std::default_random_engine(seed));
 }
 
 void Deck::StartGame(vector<Player*> players, Pile* pl){
-    PrintDeck();
+    //PrintDeck();
     for(Player* x : players){
         for(int i = 0; i<6; i++){
             x->TakeCard(DealMeCard());

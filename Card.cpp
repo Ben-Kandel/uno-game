@@ -38,23 +38,24 @@ std::ostream& operator<<(std::ostream& os, Card& c){
     if(c.GetColor() == 'r'){
         SetConsoleTextAttribute(hconsole, 12);
         os << "red ";
-        //SetConsoleTextAttribute(hconsole, 15);
     }else if(c.GetColor() == 'g'){
         SetConsoleTextAttribute(hconsole, 10);
         os << "green ";
-        //SetConsoleTextAttribute(hconsole, 15);
     }else if(c.GetColor() == 'b'){
         SetConsoleTextAttribute(hconsole, 9);
         os << "blue ";
-        //SetConsoleTextAttribute(hconsole, 15);
     }else if(c.GetColor() == 'y'){
         SetConsoleTextAttribute(hconsole, 14);
         os << "yellow ";
-        //SetConsoleTextAttribute(hconsole, 15);
     }else if(c.GetColor() == 'w'){
         SetConsoleTextAttribute(hconsole, 15);
         os << "wild ";
-        //SetConsoleTextAttribute(hconsole, 15);
+        if(c.GetNumber() == 0){
+            os << "no draw";
+        }else if(c.GetNumber() == 1){
+            os << "draw 4";
+        }
+        return os;
     }
     
     if(c.GetNumber() == 10){
@@ -63,6 +64,8 @@ std::ostream& operator<<(std::ostream& os, Card& c){
         os << "reverse";
     }else if(c.GetNumber() == 12){
         os << "draw 2";
+    }else if(c.GetNumber() == 20){
+        os << "chosen by wild card";
     }else{
         os << c.GetNumber();
     }

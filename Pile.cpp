@@ -40,6 +40,9 @@ void Pile::RestartPile(vector<Card*>& deck){
 
 void Pile::SetWildChoice(char c){
     colorchosen = c;
+    Card* test = new Card(c, 20);
+    TakeCard(test);
+    removewild = true;
 }
 
 char Pile::GetWildChoice(){
@@ -47,5 +50,10 @@ char Pile::GetWildChoice(){
 }
 
 void Pile::TakeCard(Card* x){
+    if(removewild){
+        //we need to remove this made up card we put on the top so it doesn't shuffle back into the deck.
+        pile.pop(); //there. done.
+        removewild = false;
+    }
     pile.push(x);
 }

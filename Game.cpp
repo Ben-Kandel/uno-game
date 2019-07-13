@@ -54,7 +54,6 @@ void Game::StartGame(){
             x->TakeCard(deck->DealMeCard());
             drawfour = false;
         }
-        //cout << "The card on the top of the pile is a " << pl->GetTop()->GetColor() << ":" << pl->GetTop()->GetNumber() << endl;
         cout << "The card on the top of the pile is a " << *pl->GetTop() << endl;
         int result = x->Play(pl, deck);
         if(x->GetHandSize() <= 0){
@@ -72,6 +71,9 @@ void Game::StartGame(){
         }else if(result == 3){
             //next player has to draw 2.
             drawtwo = true;
+            tm->NextTurn();
+        }else if(result == 4){
+            drawfour = true;
             tm->NextTurn();
         }
     }

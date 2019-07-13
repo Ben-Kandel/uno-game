@@ -44,6 +44,14 @@ int HumanPlayer::Play(Pile* pl, Deck* d){
             //2 means we gotta prompt the user for a color choice.
             //blah blah stuff
             //hand.erase(hand.begin() + index-1);
+            char input;
+            cout << "Please enter red 'r', green 'g', blue 'b', or yellow 'y': ";
+            cin >> input;
+            if(input != 'r' && input != 'g' && input != 'b' && input != 'y'){
+                cout << "ERROR: Please enter a valid color choice." << endl;
+                continue;
+            }
+            pl->SetWildChoice(input);
         }
         break;
     }
@@ -56,6 +64,10 @@ int HumanPlayer::Play(Pile* pl, Deck* d){
     }else if(played->GetNumber() == 12){
         return 3;
     }
+    if(played->GetColor() == 'w' && played->GetNumber() == 1){
+        return 4;
+    }
     return 0;
     //THIS function will return an integer. 0 means dont do anything. 1 means we played a reverse. 2 means we played a skip. 3 means we played a draw 2.
+    //4 means we played a draw 4.
 }
