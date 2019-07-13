@@ -24,9 +24,11 @@ Game::Game(int p){
 
 
 void Game::CreatePlayers(){
-    for(int i = 0; i<nplayers; i++){
-        Player* p = new HumanPlayer(i); //right now we are just making all of them human players.
-        players.push_back(p);
+    Player* p = new HumanPlayer(0);
+    players.push_back(p);
+    for(int i = 1; i<nplayers; i++){
+        Player* pai = new AIPlayer(i);
+        players.push_back(pai);
     }
 }
 

@@ -24,6 +24,7 @@ using std::random_shuffle;
 #include "Card.h"
 #include "Player.h"
 #include "HumanPlayer.h"
+#include "AIPlayer.h"
 #include "TurnManager.h"
 #include "Pile.h"
 #include "Deck.h"
