@@ -32,9 +32,7 @@ public:
     }
     virtual int Play(Pile* pl, Deck* d) = 0;
     virtual void TakeCard(Card* c){
-        if(!IsHandFull()){
-            hand.push_back(c);   
-        }
+        hand.push_back(c);
     }
     virtual void TakeCards(vector<Card*> c){
         for(Card* x : c){
@@ -56,7 +54,8 @@ public:
         cout << "Player " << pnumber+1 << "'s hand:" << endl;
         int counter = 1;
         for(Card* c : hand){
-            cout << counter << ":" << "Color: " << c->GetColor() << " Number: " << c->GetNumber() << endl;
+            //cout << counter << ":" << "Color: " << c->GetColor() << " Number: " << c->GetNumber() << endl;
+            cout << counter << ": " << *c << endl;
             counter++;
         }
         cout << endl;

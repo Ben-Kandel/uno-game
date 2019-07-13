@@ -14,11 +14,17 @@
 #ifndef CARD_H
 #define CARD_H
 
+#include <ostream>
+#include <windows.h>
+#include <iostream>
+using std::cout; using std::endl;
+
 class Card {
 public:
     Card(char c, int n);
     char GetColor();
     int GetNumber();
+    friend std::ostream& operator<<(std::ostream& os, Card &c);
 private:
     char color;
     int number;

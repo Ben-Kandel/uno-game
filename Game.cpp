@@ -31,24 +31,46 @@ void Game::CreatePlayers(){
 }
 
 void Game::StartGame(){
+    bool drawtwo = false;
+    bool drawfour = false;
     deck->StartGame(players, pl);
+    int winner;
     while(!gameover){
         Player* x = players[tm->GetPlayerTurn()];
-        cout << "The card on the top of the pile is a " << pl->GetTop()->GetColor() << ":" << pl->GetTop()->GetNumber() << endl;
+        if(drawtwo){
+            x->TakeCard(deck->DealMeCard());
+            x->TakeCard(deck->DealMeCard());
+            drawtwo = false;
+        }
+        if(drawfour){
+            x->TakeCard(deck->DealMeCard());
+            x->TakeCard(deck->DealMeCard());            
+            x->TakeCard(deck->DealMeCard());
+            x->TakeCard(deck->DealMeCard());
+            drawfour = false;
+        }
+        //cout << "The card on the top of the pile is a " << pl->GetTop()->GetColor() << ":" << pl->GetTop()->GetNumber() << endl;
+        cout << "The card on the top of the pile is a " << *pl->GetTop() << endl;
         int result = x->Play(pl, deck);
+        if(x->GetHandSize() <= 0){
+            winner = x->GetPNumber() + 1;
+            break;
+        }
         if(result == 0){
             tm->NextTurn();
         }else if(result == 1){
+            cout << "someone played a reverse." << endl;
             tm->Reverse();
             tm->NextTurn();
         }else if(result == 2){
             tm->SkipTurn();
         }else if(result == 3){
             //next player has to draw 2.
+            drawtwo = true;
             tm->NextTurn();
         }
     }
-    cout << "<<<<<< Game over? >>>>>>" << endl;
+    cout << "GAME OVER! Player " << winner << " wins!" << endl;
     
 }
 

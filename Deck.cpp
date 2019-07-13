@@ -26,7 +26,8 @@ Card* Deck::DealMeCard(){
 void Deck::PrintDeck(){
     cout << "<<< BEGIN PRINTING DECK >>>" << endl;
     for(Card* x : deck){
-        cout << x->GetColor() << ":" << x->GetNumber() << endl;
+        //cout << x->GetColor() << ":" << x->GetNumber() << endl;
+        cout << *x << endl;
     }
     cout << "<<< END PRINTING DECK >>>" << endl;
 }

@@ -13,7 +13,8 @@
 
 #include <iostream>
 using std::cout; using std::endl;
-
+#include <ostream>
+#include <windows.h>
 #include "Card.h"
 #include "Game.h"
 
@@ -42,7 +43,12 @@ int main(int argc, char** argv) {
      * 6. testing the whole thing.
      
      */
-    cout << "testing" << endl;
+    
+    //9 for blue
+    //12 for red
+    //10 for green
+    //14 for yellow
+    //15 for white
     
     Game g(2);
     //g.PrintDeck();
