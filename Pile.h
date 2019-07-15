@@ -36,7 +36,7 @@ public:
 private:
     stack<Card*> pile;
     char colorchosen;
-    bool removewild;
+    bool removewild = false;
 };
 
 #endif /* PILE_H */

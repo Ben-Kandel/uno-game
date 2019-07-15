@@ -38,6 +38,7 @@ void Game::StartGame(){
     deck->StartGame(players, pl);
     int winner;
     while(!gameover){
+        cout << "the deck size is: " << deck->GetSize() << endl;
         if(deck->GetSize() <= 0 ){
             cout << "this is the pile card before: " << pl->GetTop() << endl;
             pl->RestartPile(deck->GetDeck());

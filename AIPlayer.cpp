@@ -19,50 +19,68 @@ AIPlayer::AIPlayer(int n):Player(n){
 }
 
 int AIPlayer::Play(Pile* pl, Deck* d){
-    
-    //okay. so the AI basically needs to just pick a card that works.
-    //let's get that working, and then we can make it play the special cards whenever.
-    //we'll also make it play the wild cards well, too.
-    //so, the first thing we can do, is loop through our hand until we find one that works. and then play it.
-    PrintHand();
-    
+
     Card* played;
-    int index = 0;
-    int badplaycounter = 0;
-    for(Card* x : hand){
-        int result = cl->ValidPlay(pl->GetTop(), x);
-        if(result == 0){
-            badplaycounter++;
-        }else if(result == 1){
-            pl->TakeCard(x);
-            played = x;
-            hand.erase(hand.begin() + index);
-            break;
-        }else if(result == 2){
-            badplaycounter++;//this is just temporary. i haven't implemented how to deal with wild cards yet.
+    while(true){
+        //first: loop through hand, add to dictionary. then, determine what to play. if we need to draw, just draw a card and restart the loop.
+        plays.clear(); //due to design flaws, im just gonna loop through the hand and repopulate the map everytime we ask for Play()
+        //PrintHand();
+        for(Card* x : hand){
+            int result = cl->ValidPlay(pl->GetTop(), x);
+            plays[result].push_back(x);
         }
-        index++;
+        
+        if(plays[1].size() == 0 && plays[2].size() == 0){
+            //we have to draw a card. 
+            TakeCard(d->DealMeCard());
+            continue;
+        }else if(plays[1].size() == 0 && plays[2].size() != 0){
+            //if we have no playable cards and some playable wild card:
+            //play the first one (the 'first' one being the back of the vector)
+            played = plays[2].back();
+            plays[2].pop_back();
+            //we need to choose a color now.
+            char colorchoice = 'r';
+            if(ngreencards > nredcards){
+                colorchoice = 'g';
+            }else if(nbluecards > ngreencards){
+                colorchoice = 'b';
+            }else if(nyellowcards > nbluecards){
+                colorchoice = 'y';
+            }
+            pl->TakeCard(played);
+            pl->SetWildChoice(colorchoice);
+            break;
+        }else if(plays[1].size() != 0){
+            played = plays[1].back();
+            plays[1].pop_back();
+            pl->TakeCard(played);
+            break;
+        }
+        
     }
-    //if we made it here, it means we made no play. we gotta draw a card and keep going? we'll get there eventually, hold on.
-   
-    if(badplaycounter == hand.size()){ //if every single one of our cards was unplayable, we need to keep drawing until we can play one.
-        cout << "im an AI player and I could not find a card to play, so I must draw." << endl;
-        while(true){
-            hand.push_back(d->DealMeCard());
-            int result = cl->ValidPlay(pl->GetTop(), hand.back());
-            if(result == 0){
-                continue;
-            }else if(result == 1){
-                pl->TakeCard(hand.back());
-                played = hand.back();
-                hand.erase(hand.end()-1);
+    //we have to erase it from the hand. this is a little messy, but..:
+    for(int i = 0; i<hand.size(); i++){
+        if(played->GetColor() == hand[i]->GetColor()){
+            if(played->GetNumber() == hand[i]->GetNumber()){
+                //erase the card from hand.
+                hand.erase(hand.begin() + i);
                 break;
-            }else if(result == 2){
-                continue;
             }
         }
     }
+    //updating our color values:
+    if(played->GetColor() == 'r'){
+        nredcards--;
+    }else if(played->GetColor() == 'g'){
+        ngreencards--;
+    }else if(played->GetColor() == 'b'){
+        nbluecards--;
+    }else if(played->GetColor() == 'y'){
+        nyellowcards--;
+    }
     
+    //determining what to return:
     if(played->GetNumber() == 10){
         return 2;
     }else if(played->GetNumber() == 11){
@@ -77,4 +95,18 @@ int AIPlayer::Play(Pile* pl, Deck* d){
     //THIS function will return an integer. 0 means dont do anything. 1 means we played a reverse. 2 means we played a skip. 3 means we played a draw 2.
     //4 means we played a draw 4.
     
+}
+
+void AIPlayer::TakeCard(Card* c){
+    
+    hand.push_back(c);
+    if(c->GetColor() == 'r'){
+        nredcards++;
+    }else if(c->GetColor() == 'g'){
+        ngreencards++;
+    }else if(c->GetColor() == 'b'){
+        nbluecards++;
+    }else if(c->GetColor() == 'y'){
+        nyellowcards++;
+    }
 }

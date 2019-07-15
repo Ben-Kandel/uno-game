@@ -29,10 +29,23 @@ public:
     Player(int n){
         pnumber = n;
         cl = new CardLogic();
+        nredcards = 0;
+        nbluecards = 0;
+        ngreencards = 0;
+        nyellowcards = 0;
     }
     virtual int Play(Pile* pl, Deck* d) = 0;
     virtual void TakeCard(Card* c){
         hand.push_back(c);
+        if(c->GetColor() == 'r'){
+            nredcards++;
+        }else if(c->GetColor() == 'g'){
+            ngreencards++;
+        }else if(c->GetColor() == 'b'){
+            nbluecards++;
+        }else if(c->GetColor() == 'y'){
+            nyellowcards++;
+        }
     }
     virtual void TakeCards(vector<Card*> c){
         for(Card* x : c){
@@ -71,6 +84,11 @@ protected:
         return false;
     }
     CardLogic* cl;
+    int nredcards;
+    int ngreencards;
+    int nbluecards;
+    int nyellowcards;
+    
 };
 
 #endif /* PLAYER_H */

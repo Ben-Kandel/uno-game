@@ -51,6 +51,7 @@ int HumanPlayer::Play(Pile* pl, Deck* d){
                 cout << "ERROR: Please enter a valid color choice." << endl;
                 continue;
             }
+            pl->TakeCard(hand[index-1]);
             pl->SetWildChoice(input);
         }
         break;

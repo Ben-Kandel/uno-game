@@ -14,14 +14,18 @@
 #ifndef AIPLAYER_H
 #define AIPLAYER_H
 
+#include <map>
+using std::map;
 #include "Player.h"
+
 
 class AIPlayer : public Player{
 public:
     AIPlayer(int n);
     virtual int Play(Pile* pl, Deck* d);
+    virtual void TakeCard(Card* c);
 private:
-    //nada
+    map<int, vector<Card*>> plays;
 };
 
 #endif /* AIPLAYER_H */

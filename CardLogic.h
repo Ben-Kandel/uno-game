@@ -20,10 +20,10 @@ class CardLogic {
 public:
     CardLogic() = default;
     int ValidPlay(Card* card_on_pile, Card* potential_play);
-private:
-    char last_color_picked;
-    bool SameNumber(Card* x, Card* y);
     bool SameColor(Card* x, Card* y);
+    bool SameNumber(Card* x, Card* y);
+private:
+    //nothinn
 };
 
 #endif /* CARDLOGIC_H */
