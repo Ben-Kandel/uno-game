@@ -32,7 +32,7 @@ int AIPlayer::Play(Pile* pl, Deck* d){
         
         if(plays[1].size() == 0 && plays[2].size() == 0){
             //we have to draw a card. 
-            TakeCard(d->DealMeCard());
+            TakeCard(d->DealMeCard(pl));
             continue;
         }else if(plays[1].size() == 0 && plays[2].size() != 0){
             //if we have no playable cards and some playable wild card:

@@ -51,6 +51,8 @@ char Pile::GetWildChoice(){
 
 void Pile::TakeCard(Card* x){
     if(removewild){
+        Card* f = GetTop();
+        free(f);
         pile.pop();
         removewild = false;
     }

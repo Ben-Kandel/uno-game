@@ -31,12 +31,11 @@ using std::random_shuffle;
 
 class Game {
 public:
-    Game(int p);
-    //~Game();
+    Game(int hp, int aip);
     void StartGame();
     void PrintPlayerHands();
 private:
-    void CreatePlayers();
+    void CreatePlayers(int hp, int aip);
     void DealCards(int p, int cards);
     int nplayers;
     vector<Player*> players;

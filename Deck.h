@@ -26,7 +26,7 @@ using std::shuffle;
 class Deck {
 public:
     Deck();
-    Card* DealMeCard();
+    Card* DealMeCard(Pile* p);
     void DealCards(int c, vector<Player*> players);
     void PrintDeck();
     void StartGame(vector<Player*> players, Pile* pl);

@@ -25,7 +25,7 @@ int HumanPlayer::Play(Pile* pl, Deck* d){
         cout << "Please choose a card to play by typing in the corresponding number (-1 to draw a card): ";
         cin >> index;
         if(index == -1){
-            hand.push_back(d->DealMeCard());
+            hand.push_back(d->DealMeCard(pl));
             PrintHand();
             continue;
         }

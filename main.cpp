@@ -12,7 +12,7 @@
  */
 
 #include <iostream>
-using std::cout; using std::endl;
+using std::cout; using std::endl; using std::cin;
 #include <ostream>
 #include <windows.h>
 #include "Card.h"
@@ -23,15 +23,14 @@ using std::cout; using std::endl;
  * 
  */
 int main(int argc, char** argv) {
-    /*
-     TODO:
-     * 5. ai players. //almost done. they don't know how to play wild cards yet,
-     * and I kinda want to change the way they play regular cards..idk. maybe ill put it in a list of
-     * priority or something. I definitely want them to always play their action cards if they can.
-     * 6. testing the whole thing.
-     
-     */
-    Game g(2);
+    int human_players, ai_players;
+    cout << "Please enter how many human players there are: ";
+    cin >> human_players;
+    cout << endl;
+    cout << "Please enter how many AI players there are: ";
+    cin >> ai_players;
+    cout << endl;
+    Game g(human_players, ai_players);
     g.StartGame();
     return 0;
 }

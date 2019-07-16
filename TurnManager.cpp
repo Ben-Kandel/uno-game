@@ -47,5 +47,11 @@ void TurnManager::SkipTurn(){
 }
 
 void TurnManager::Reverse(){
-    dir = !dir; //flip the direction.
+    if(number_of_players == 2){
+        //all reverse does is just skip.
+        //we call next turn in Game.cpp...so what should we do here? just call nextturn, right?
+        NextTurn();
+    }else{
+        dir = !dir; //flip the direction.   
+    }
 }

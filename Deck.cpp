@@ -17,7 +17,14 @@ Deck::Deck(){
     CreateCards();
 }
 
-Card* Deck::DealMeCard(){
+Card* Deck::DealMeCard(Pile* p){
+    if(deck.size() == 1){
+        Card* result = deck.back();
+        deck.pop_back();
+        p->RestartPile(deck);
+        
+        return result;
+    }
     Card* result = deck.back();
     deck.pop_back();
     return result;
@@ -70,10 +77,10 @@ void Deck::StartGame(vector<Player*> players, Pile* pl){
     //PrintDeck();
     for(Player* x : players){
         for(int i = 0; i<6; i++){
-            x->TakeCard(DealMeCard());
+            x->TakeCard(DealMeCard(pl));
         }
     }
-    pl->TakeCard(DealMeCard()); //putting the starter card down.
+    pl->TakeCard(DealMeCard(pl)); //putting the starter card down.
 }
 
 int Deck::GetSize(){
